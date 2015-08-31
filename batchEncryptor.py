@@ -124,7 +124,9 @@ if __name__ == '__main__':
         for jjj in range(16):
             publicKey+=str(random.randrange(0,9))
     
-    
+    if(directory.endswith("/")): # This is to prevent from having a slash at the end of the address
+        directory = directory.rpartition("/")[0]
+
     if( directory.endswith("-enc")):
         case=2
     else:
@@ -139,30 +141,28 @@ if __name__ == '__main__':
         srcAdr=os.getcwd()+'/'+directory
         if(case==1):
             dstAdr=os.getcwd()+'/'+directory+"-enc"
-            print(os.path.exists(directory+"-enc"))
-            if(not os.path.exists(directory+"-enc")):
-                os.mkdir(directory+"-enc")
+            print(os.path.exists(dstAdr))
+            if(not os.path.exists(dstAdr)):
+                os.mkdir(dstAdr)
         if(case==2):
             dstAdr=os.getcwd()+'/'+directory.rpartition("-enc")[0]
-            if(not os.path.exists(directory.rpartition("-enc")[0])):
-                os.mkdir(directory.rpartition("-enc")[0]) 
+            if(not os.path.exists(dstAdr)):
+                os.mkdir(dstAdr) 
             
     else:
         type=TYPE_GLOBAL
         srcAdr=directory
         if(case==1):
             dstAdr=directory+"-enc"
-            if(not os.path.exists(directory+"-enc")):
-                os.mkdir(directory+"-enc")
+            if(not os.path.exists(dstAdr)):
+                os.mkdir(dstAdr)
         if(case==2):
             dstAdr=directory.rpartition("-enc")[0]
-            if(not os.path.exists(directory.rpartition("-enc")[0])):
-                os.mkdir(directory.rpartition("-enc")[0])
+            if(not os.path.exists(dstAdr)):
+                os.mkdir(dstAdr)
               
-        
+    print("Destination: ") 
+    print(dstAdr)   
     os.chdir(srcAdr)
     iterate()
     print("%s ValueError(s) happened......."%valErrCount)  
-    
-    
-        
