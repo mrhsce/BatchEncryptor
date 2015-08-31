@@ -119,10 +119,10 @@ if __name__ == '__main__':
         publicKey= sys.argv[2]
     else:               
         publicKey=input("Please insert the key : ")
-        random.seed(publicKey)
-        publicKey=''
-        for jjj in range(16):
-            publicKey+=str(random.randrange(0,9))
+    random.seed(publicKey)
+    publicKey=''
+    for jjj in range(16):
+        publicKey+=str(random.randrange(0,9))
     
     if(directory.endswith("/")): # This is to prevent from having a slash at the end of the address
         directory = directory.rpartition("/")[0]
